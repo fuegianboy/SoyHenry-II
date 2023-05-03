@@ -14,27 +14,21 @@ const otroContador = counter()
 otroContador()      // 1
 otroContador()      // 2 */
 function counter() {
-  let contador = 1
-  return function() {
-    return contador ++
+  let contar = 0
+  return function(){
+    return contar = contar + 1
   }
 }
-
-
-const contador1 = counter()
-console.log( contador1())
-console.log( contador1())
-
+let contador1 = counter()
+contador1()
+contador1()
+contador1()
 const contador2 = counter()
-console.log(contador2())
-console.log(contador2())
-console.log(contador2())
-console.log(contador2())
-console.log( contador1())
-console.log( contador1())
-console.log("*******************************************************")
+contador2()
+contador2()
 
-
+console.log(contador1())
+console.log(contador2())
 
 /* Ejercicio 2
 Tu tarea aquí es lograr, mediante un closure, que cacheFunction actúe como una memoria caché para el callback 
@@ -54,30 +48,21 @@ otra vez cálculos que ya se hicieron anteriormente.
   squareCache(5)    // invocará a square(5), almacenará el resultado y lo retornará
   squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) */
 
-  function square(n){
-    return n * n
-  }
+function square(n){
+  return n * n
+}
 
 function cacheFunction(cb) {
-  let valores = {}
-  return function(n){
-    if(valores.hasOwnProperty(n)){
-      return valores[n]
-    } else {
-      valores[n] = cb(n)
-      return valores[n]
+  let cache = {}
+  return function (n){
+    if (!cache.hasOwnProperty(n)){
+      cache[n] = cb(n)
+      return cache[n]
+    } else{
+      return cache[n]
     }
   }
 }
-
-const respuesta = cacheFunction(square)
-console.log(respuesta(4))
-console.log(respuesta(2))
-console.log(respuesta(3))
-console.log(respuesta(4))
-
-console.log("*******************************************************")
-
 
 //----------------------------------------
 
@@ -114,15 +99,9 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
     return delimitadorIzquierda + cadena + delimitadorDerecha;
 }
 
-let textoAsteriscos = crearCadena.bind(this, "*", "*");
-let textoGuiones = crearCadena.bind(this,"-", "-");
-let textoUnderscore = crearCadena.bind(this,"_", "_");
-
-console.log(textoAsteriscos("Holis!"))
-console.log(textoGuiones("Holis!"))
-console.log(textoUnderscore("Holis!"))
-
-
+let textoAsteriscos = crearCadena.bind(this,"*","*");
+let textoGuiones = crearCadena.bind(this,"-","-");
+let textoUnderscore = crearCadena.bind(this,"_","_");
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
