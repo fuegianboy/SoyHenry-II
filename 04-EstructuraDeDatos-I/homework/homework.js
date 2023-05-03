@@ -15,23 +15,13 @@ Como ejercicio adicional y completamente opcional, al terminar de resolver este 
 */
 
 function nFactorial(n) {
-  return (n <=1) ? 1 : n * nFactorial(n-1)
+  return n < 2 ? 1: n * nFactorial(n-1)
 }
 
-// function nFactorial(n){
-//   let resultado = 1
-//   for (let i=1; i <= n; i++) resultado *= i 
-//   return resultado
-// }
-
-
 function nFibonacci(n) {
-  // if (n===0) return 0
-  // if (n <= 2) return 1
-  // else return nFibonacci(n-1) + nFibonacci(n-2)
-  let fibo = [0,1]
-  for (let i = 2; i<=n;i++)fibo[i] = fibo[i-2]+fibo[i-1]
-  return fibo[n]
+  if (n === 0) return 0
+  if (n < 3) return 1
+  else return nFibonacci(n-1) + nFibonacci(n-2)
 }
 
 /*
@@ -47,17 +37,16 @@ function Queue() {
   this.array = []
 }
 
-Queue.prototype.enqueue = function(value){
-  this.array.unshift(value)    
+Queue.prototype.enqueue = function(dato){
+  return this.array.unshift(dato)
 }
-
 Queue.prototype.dequeue = function(){
   return this.array.pop()
 }
-
 Queue.prototype.size = function(){
   return this.array.length
 }
+
 
 /*⚠️ No modificar nada debajo de esta línea ⚠️*/
 module.exports = {
